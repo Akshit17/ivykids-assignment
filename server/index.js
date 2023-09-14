@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -14,8 +15,9 @@ app.listen(4000, (err) => {
   }
 });
 
+
 mongoose
-  .connect(DB_CONN_STRING, {       
+  .connect(process.env.DB_CONN_STRING, {       
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -29,7 +31,7 @@ mongoose
 app.use(
   cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT"],
     credentials: true,
   })
 );

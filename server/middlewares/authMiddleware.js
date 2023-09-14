@@ -6,14 +6,14 @@ module.exports.checkUser = (req, res, next) => {
   if (token) {
     jwt.verify(
       token,
-      "Verification Secret ID?",
+      process.env.JWT_SECRET_KEY,
       async (err, decodedToken) => {
         if (err) {
           res.json({ status: false });
           next();
         } else {
           const user = await User.findById(decodedToken.id);
-          if (user) res.json({ status: true, user: user.email });
+          if (user) res.json({ status: true, user: user.email , following: user.following});
           else res.json({ status: false });
           next();
         }

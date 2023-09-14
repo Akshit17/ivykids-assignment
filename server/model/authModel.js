@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
-  email: {
+  email: {                          
     type: String,
     required: [true, "Email is Required"],
     unique: true,
@@ -11,6 +11,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Password is Required"],
   },
+  // profilePicture: String,
+
 });
 
 userSchema.pre("save", async function (next) {
