@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+
 const tweetSchema = new mongoose.Schema({
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -6,7 +8,7 @@ const tweetSchema = new mongoose.Schema({
     },
     text: {
       type: String,
-      required: [true, "Text is Required"],
+      // required: [true, "Text is Required"],
     },
     createdAt: {
       type: Date,
@@ -22,6 +24,7 @@ const tweetSchema = new mongoose.Schema({
         ref: "User",
       },
     }],
+
   });
   
   module.exports = mongoose.model("Tweets", tweetSchema);

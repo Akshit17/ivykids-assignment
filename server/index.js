@@ -2,8 +2,11 @@ require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
+
+const authRoutes = require("./routes/authRoutes");
+const followersRoutes = require("./routes/followersRoutes");
+const tweetRoutes = require("./routes/tweetRoutes");
 
 const app = express();
 
@@ -39,3 +42,5 @@ app.use(cookieParser());
 
 app.use(express.json());
 app.use("/", authRoutes);
+app.use("/followers", followersRoutes);
+app.use("/tweets", tweetRoutes);
