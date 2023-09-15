@@ -41,7 +41,7 @@ module.exports = {
   async getTimeline(req, res) {
     const user = req.user;
     
-    const followedUsers = await followersModel.find({ followerUserId: user.id });
+    const followedUsers = await followersModel.find({ followerUserId: user._id });
     const tweetIds = followedUsers.map((user) => user.followingUserId);
     
     const tweets = await tweetModel.find({ userId: { $in: tweetIds } });

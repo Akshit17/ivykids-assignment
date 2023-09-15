@@ -4,17 +4,24 @@ import axios from 'axios';
 const CreateTweetButton: React.FC = () => {
     const [tweetText, setTweetText] = useState('');
   
-    const handleTweetSubmit = async () => {
+    const handleTweetSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
       try {
-        await axios.post('/tweets/', { text: tweetText });
+        console.log("AAAJAJAJAJA")
+        const response = await axios.post('http://localhost:4000/tweets/', { text: tweetText }, 
+        {
+          withCredentials: true,
+        });
+        console.log(response)
         setTweetText('');
       } catch (error) {
         console.log(error);
       }
+
     };
   
     return (
-      <form onSubmit={handleTweetSubmit}>
+      <form onSubmit={(e) => handleTweetSubmit(e)}>
         <input
           type="text"
           placeholder="Write a tweet..."

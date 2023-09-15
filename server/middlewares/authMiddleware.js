@@ -14,15 +14,14 @@ module.exports.checkUser = (req, res, next) => {
         } else {
           const user = await User.findById(decodedToken.id);
           if (user) {
-            // console.log();
+            console.log("middleware user:- ", user);
             req.user = user;
             // res.json({ status: true, user: user.email});
-            next();
           }
           else {
             res.json({ status: false });
           }
-          // next();
+          next();
         }
       }
     );

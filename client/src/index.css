@@ -1,84 +1,53 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(236, 236, 238);
-  overflow: hidden;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
+@layer components {
+  /* width */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
 
-.container {
-  background-color: white;
-  padding: 1rem 3rem;
-  padding-bottom: 2rem;
-  border-radius: 0.5rem;
-  border-top: rgb(80, 98, 255) 0.5rem solid;
-}
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #FFF;
+  }
 
-h2 {
-  margin: 1rem 0;
-}
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #CCC;
+    border-radius: 100vh;
+    border: 2px solid #FFF;
+  }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-}
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #AAA;
+  }
 
-form div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
+  /* width */
+  .dark ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
 
-input {
-  padding: 0.5rem;
-  border-radius: 0.3rem;
-  border: 1px solid gray;
-  font-size: 1.1rem;
-}
+  /* Track */
+  .dark ::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #374151;
+  }
 
-button {
-  background-color: rgb(80, 98, 255);
-  color: white;
-  border: none;
-  padding: 0.5rem;
-  font-size: 1rem;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 0.3rem;
-}
+  /* Handle */
+  .dark ::-webkit-scrollbar-thumb {
+    background: #6b7280;
+    border-radius: 100vh;
+    border: 2px solid #374151;
+  }
 
-span a {
-  text-decoration: none;
-  color: rgb(80, 98, 255);
-}
-
-.private {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgb(80, 98, 255);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: uppercase;
-  font-size: 3rem;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.private button {
-  background-color: black;
-  padding: 2rem 10rem;
-  font-size: 4rem;
-  border-radius: 2rem;
+  /* Handle on hover */
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #7a8294;
+  }
 }

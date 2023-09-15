@@ -41,38 +41,50 @@ function Register() {
     }
   };
   return (
-    <div className="container">
-      <h2>Register Account</h2>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={(e) =>
-              setValues({ ...values, [e.target.name]: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={(e) =>
-              setValues({ ...values, [e.target.name]: e.target.value })
-            }
-          />
-        </div>
-        <button type="submit">Submit</button>
-        <span>
-          Already have an account ?<Link to="/login"> Login</Link>
-        </span>
+    <div className="h-screen flex flex-col justify-center items-center">
+    <img src="/twitterLogo.png" alt="Twitter Logo" className="max-h-12 max-w-12 m-5" />
+    <div className="bg-white px-3 py-3 pb-2 rounded-md border-t-4 border-t-blue-500 w-full max-w-md">
+      <h2 className="text-2xl font-weight-light font-inter mx-2 my-2">Register Account</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-0.5">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={(e) =>
+                setValues({ ...values, [e.target.name]: e.target.value })
+              }
+              className="w-full p-3 border border-gray-300 rounded-md font-inter"
+            />
+          </div>
+            <div className="flex flex-col gap-0.5">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                onChange={(e) =>
+                  setValues({ ...values, [e.target.name]: e.target.value })
+                }
+                className="w-full p-3 border border-gray-300 rounded-md font-inter"
+              />
+            </div>
+            </div>
+          <button
+            type="submit"
+            className="w-full p-3 bg-blue-500 text-white rounded-md font-inter mt-4 my-4"
+          >
+            Submit
+          </button>
+          <span className="mt-10 text-center">
+            Already have an account ?<Link to="/login" className="text-blue-500 font-inter"> Login</Link>
+          </span>
       </form>
       <ToastContainer />
     </div>
+  </div>
   );
 }
 

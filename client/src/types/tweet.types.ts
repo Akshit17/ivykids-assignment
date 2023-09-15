@@ -4,7 +4,7 @@ export interface Like {
   userId: ObjectId;
 }
 
-export interface Tweet {
+export interface TweetType {
   _id: string;
   userId: ObjectId;
   text?: string;

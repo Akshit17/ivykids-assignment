@@ -3,42 +3,81 @@
 import React from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOutButton } from "../components/LogOutButton";
 import { useUserVerification } from "../hooks/useUserVerification";
 
 import { toast, ToastContainer } from "react-toastify";
 import { RingLoader } from "react-spinners"; 
+import LogOutButton from "../components/LogOutButton";
+import TweetFeed from "../components/TweetFeed";
+import UsersFeed from "../components/UsersFeed";
+import CreateTweetButton from "../components/CreateTweetButton";
+import { Link } from "react-router-dom";
 
-export const ProtectedRoute: React.FC = () => {
+export const Timeline: React.FC = () => {
   const navigate = useNavigate();
+
   const {user, isToken} = useUserVerification();
 
-  useEffect(() => {
-    if (!isToken) {
-      navigate("/login");
-    }else{
-      console.log(user?._id)
-        toast(`Welcome ${user?._id} !!🦄`, {
-            theme: "dark",
-          });
-    }
-  }, [isToken, navigate]);
+  console.log('User :- ', user)
+  console.log('isToken :- ', isToken)
+ 
+  // useEffect(() => {
+  //   if (!isToken) {
+  //     navigate("/login");
+  //   } else {
+  //     console.log(user?._id);
+  //     toast(`Welcome ${user?._id} !!🦄`, {
+  //       theme: "dark",
+  //     });
+  //   }
+  // }, []);
 
+  if (!isToken) {
+        navigate("/login");
+      } else {
+        console.log(user?._id);
+        toast(`Welcome ${user?._id} !!🦄`, {
+          theme: "dark",
+        });
+  }
+  
+  // const isToken = true;
   return (
     isToken ?
       <>
-        <div className="private">
-          <ToastContainer />
-          <h1>Super Secret Page</h1>
-          <Sidebar/>                //In left side (Consisting of link to profilePage(of logged in user) , Logo of the app) 
-          <LogOutButton />         //In top right corner ( )
-          <TweetFeed />            //In the middle  (Tweet cards of tweets posted by users whom our logged in user follows)
-          <UsersFeed />            // In the right (List of all users in database as card consisting of followbutton to follow that user and onclicking their username link to that Users profilePage)
-        </div>
+          <div className="flex flex-col min-h-screen">
+            <header className="flex items-center justify-between bg-white border-b border-gray-200 py-4 px-6">
+              <h1 className="font-semibold text-gray-900">Main Timeline</h1>
+              <LogOutButton />
+            </header>
+
+            <main className="flex flex-row flex-wrap">
+              <aside className="flex flex-col w-1/4 p-6">
+                <div className="flex items-center">
+                  <img src="/logo.png" alt="Logo" className="w-12 h-12 mr-4" />
+                  <Link to="/profile" className="text-gray-900">Profile</Link>
+                </div>
+
+                <CreateTweetButton />
+
+                {/* <UsersFeed /> */}
+              </aside>
+
+              <div className="flex flex-col w-3/4 p-6">
+                <TweetFeed />
+              </div>
+            </main>
+          </div>
+
       </>
       : (
         <div className="loader-container">
-          {/* Loader */}
+          <RingLoader
+            // css={loaderStyle}
+            size={250}
+            color={"#000000"}
+            loading={true}
+          />
         </div>
       )
   );

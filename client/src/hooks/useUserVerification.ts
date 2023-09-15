@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { User } from "../types/user.types"
+import { useNavigate } from "react-router-dom";
 
 export function useUserVerification(): {
   user: User | null;
   isToken: boolean;
 } {
+
   const [cookies, setCookie, removeCookie] = useCookies();
   const [user, setUser] = useState<User | null>(null);
   const [isToken, setIsToken] = useState(false);
@@ -15,9 +17,8 @@ export function useUserVerification(): {
     const verifyUser = async () => {
       if (!cookies.jwt) {
         setIsToken(false);
-        return;
+        // what to do here?
       }
-
       const { data } = await axios.post(
         "http://localhost:4000",
         {},
@@ -26,8 +27,12 @@ export function useUserVerification(): {
         }
       );
 
+      console.log("Data :- ", data)
+
       if (!data.status) {
         removeCookie("jwt");
+        // navigate("/login"); //cehcks
+        // what to do here?
         setIsToken(false);
       } else {
         setUser(data.user);
